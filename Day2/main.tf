@@ -111,19 +111,19 @@ resource "aws_route_table_association" "rtassprivate2" {
   route_table_id = aws_route_table.private.id
 }
 
-resource "tls_private_key" "private_key1" {
+resource "tls_private_key" "private_key2" {
   rsa_bits = 4096
   algorithm = "RSA"
 }
 
 resource "aws_key_pair" "private_keypair" {
   key_name = var.key_pair_name_ec2
-  public_key = tls_private_key.private_key1.public_key_openssh
+  public_key = tls_private_key.private_key2.public_key_openssh
 }
 
 resource "local_file" "hsitpublicserverkey" {
    filename = var.key_pair_name_ec2
-   content = tls_private_key.private_key1.private_key_pem
+   content = tls_private_key.private_key2.private_key_pem
 }
 
 resource "aws_security_group" "dev_sec_sg" {
@@ -158,7 +158,6 @@ resource "aws_instance" "instance1" {
   associate_public_ip_address =  "true"
   vpc_security_group_ids = [aws_security_group.dev_sec_sg.id]
   key_name        = aws_key_pair.private_keypair.key_name
-
   tags = {
     Name = "dev-ec2-public"
   }
