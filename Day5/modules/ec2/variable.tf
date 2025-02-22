@@ -5,3 +5,5 @@ variable "private_subnet" {}
 variable "key_name_1" {}
 variable "vpc_id" {}
 variable "project_sec_grp" {}
+variable "project_sec_grp2" {}
+variable "key_name_2" {}

@@ -15,6 +15,7 @@ module "securitygroup" {
 module "key_pair" {
   source = "./modules/key"
   key_pair_name = "instancekey"
+   key_pair_name_2 = "instancekey2"
 }
 
 module "ec2" {
@@ -28,4 +29,6 @@ module "ec2" {
   private_subnet = module.projectvpc.private_subnet
   project_sec_grp = module.securitygroup.project_sec_grp
   key_name_1 = module.key_pair.key_name_1
+  key_name_2 = module.key_pair.key_name_2
+  project_sec_grp2 = module.securitygroup.project_sec_grp2
 }
