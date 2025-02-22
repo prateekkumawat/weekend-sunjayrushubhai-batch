@@ -1,0 +1,13 @@
+main.tf 
+provider.tf
+output.tf 
+modules
+   |
+   ec2_module
+     main.tf 
+     variable.tf 
+     output.tf 
+   vpc 
+     main.tf 
+     variable.tf 
+     output.tf 
