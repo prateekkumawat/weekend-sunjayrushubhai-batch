@@ -1,0 +1,6 @@
+aws_region = "ap-south-1"
+vpc_id     = "vpc-0babb4d4f6c031ee0"
+project_vpc_publicsubnet_az1_id = "subnet-0cc6ca9dc018c4d7e"
+project_vpc_publicsubnet_az2_id = "subnet-004fb0f623b6227d7"
+project_vpc_privatesubnet_az1_id = "subnet-092de501702a92182" 
+project_vpc_privatesubnet_az2_id = "subnet-031700be046d6066a"
