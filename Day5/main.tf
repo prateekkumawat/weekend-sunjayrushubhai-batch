@@ -2,8 +2,8 @@ module "projectvpc" {
    source = "./modules/vpc"
     
    project_name = "terraform-module"
-   vpc_network_cidr = "10.0.0.0/22"
-   vpc_subnet_cidr = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+   vpc_network_cidr = "10.0.0.0/16"
+   vpc_subnet_cidr = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24", "10.0.4.0/24"]
    vpc_az = ["ap-south-1a", "ap-south-1b"]
 }
 
@@ -31,4 +31,12 @@ module "ec2" {
   key_name_1 = module.key_pair.key_name_1
   key_name_2 = module.key_pair.key_name_2
   project_sec_grp2 = module.securitygroup.project_sec_grp2
+}
+
+module "rds" {
+  source = "./modules/rds"
+  vpc_id = module.projectvpc.vpc_id
+  project_sec_db_security = module.securitygroup.project_sec_db_security
+  db_private_subnet-az1 = module.projectvpc.db_private_subnet-az1
+  db_private_subnet_az2 = module.projectvpc.db_private_subnet_az2
 }

@@ -51,3 +51,30 @@ resource "aws_security_group" "dev_sec_sg2" {
 }
 
 ############security group for instnace end #####################################
+
+#********Security Group For RDS DB ***********************
+
+resource "aws_security_group" "dev_db_sec1" {
+ name = "default-security-vpc-grp-RDS"
+ description = "Allow MYSQL rules RDS"
+ vpc_id = var.vpc_id
+ 
+ ingress {
+    description   = "Allow MYSQL/Aurora Rules"
+    from_port     = 3306
+    to_port       = 3306
+    protocol      = "TCP"
+    cidr_blocks   = ["0.0.0.0/0"]
+  }
+ 
+ egress {
+    description   = "Allow All Traffic"
+    from_port     = 0
+    to_port       = 0
+    protocol      = "-1"
+    cidr_blocks   = ["0.0.0.0/0"]
+  }
+ tags = {
+    Name = "default-security-vpc-grp-rdsdb"
+  }
+}

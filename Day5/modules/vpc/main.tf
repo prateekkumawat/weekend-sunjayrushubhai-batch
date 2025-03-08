@@ -23,7 +23,31 @@ resource "aws_subnet" "private" {
   map_public_ip_on_launch = true
 
   tags = {
-    Name =  "${var.project_name}-private-az1"
+    Name =  "${var.project_name}-private-az2"
+  }
+}
+
+#********DB Subnet Private Used for rds ******
+
+resource "aws_subnet" "dbprivate1" {
+  vpc_id                  = aws_vpc.dev.id
+  cidr_block              = var.vpc_subnet_cidr[2]
+  availability_zone       = var.vpc_az[0]
+  map_public_ip_on_launch = false
+
+  tags = {
+    Name =  "${var.project_name}-db-private1-az1"
+  }
+}
+
+resource "aws_subnet" "dbprivate2" {
+  vpc_id                  = aws_vpc.dev.id
+  cidr_block              = var.vpc_subnet_cidr[3]
+  availability_zone       = var.vpc_az[1]
+  map_public_ip_on_launch = false
+
+  tags = {
+    Name =  "${var.project_name}-db-private2-az2"
   }
 }
 
